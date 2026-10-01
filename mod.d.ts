@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2026 The Stdlib Authors.
@@ -16,18 +16,31 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
+
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@main/index.d.ts"/>
+
+import { typedndarray } from '@stdlib/types/ndarray';
 
 /**
-* BLAS level 2 routine to perform the rank 1 operation `A = alpha*x*y^T + A`.
+* Performs the rank 1 operation `A = alpha*x*y^T + A`, where `alpha` is a scalar, `x` and `y` are one-dimensional ndarrays, and `A` is an `M` by `N` matrix.
 *
-* @module @stdlib/blas-base-ndarray-gger
+* ## Notes
+*
+* -   The function expects the following ndarrays:
+*
+*     -   a one-dimensional input ndarray corresponding to `x`.
+*     -   a one-dimensional input ndarray corresponding to `y`.
+*     -   a two-dimensional input/output ndarray corresponding to `A`.
+*     -   a zero-dimensional ndarray containing a scalar constant corresponding to `alpha`.
+*
+* @param arrays - array-like object containing ndarrays
+* @returns output ndarray
 *
 * @example
 * var matrix = require( '@stdlib/ndarray-matrix-ctor' );
 * var vector = require( '@stdlib/ndarray-vector-ctor' );
 * var scalar2ndarray = require( '@stdlib/ndarray-from-scalar' );
-* var gger = require( '@stdlib/blas-base-ndarray-gger' );
 *
 * var x = vector( [ 1.0, 2.0 ], 'generic' );
 * var y = vector( [ 3.0, 4.0, 5.0 ], 'generic' );
@@ -43,12 +56,9 @@
 * var bool = ( z === A );
 * // returns true
 */
-
-// MODULES //
-
-var main = require( './main.js' );
+declare function gger<T extends typedndarray<number> = typedndarray<number>>( arrays: [ typedndarray<number>, typedndarray<number>, T, typedndarray<number> ] ): T;
 
 
 // EXPORTS //
 
-module.exports = main;
+export = gger;
